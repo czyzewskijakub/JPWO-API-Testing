@@ -8,17 +8,18 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import pl.ioad.models.Credentials;
 
 public class AuthHelper {
 
-    public String getAccessToken(String email, String password) {
+    public String getAccessToken(Credentials credentials) {
 
         HttpClient httpClient = HttpClients.createDefault();
 
         try {
             HttpPost httpPost = new HttpPost("https://api.practicesoftwaretesting.com/users/login");
 
-            String requestBody = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
+            String requestBody = "{\"email\":\"" + credentials.email() + "\",\"password\":\"" + credentials.password() + "\"}";
 
             httpPost.setEntity(new StringEntity(requestBody));
             httpPost.setHeader("Content-Type", "application/json");
