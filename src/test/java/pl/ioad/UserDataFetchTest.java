@@ -84,11 +84,11 @@ public class UserDataFetchTest {
 
     @Test
     public void testSearchForUserByNameUnauthorized() {
-        var response = given()
+        given()
                 .baseUri(BASE_URL)
                 .when()
-                .get(USERS_ENDPOINT + "/search?q=123");
-
-        response.then().statusCode(HTTP_UNAUTHORIZED);
+                .get(USERS_ENDPOINT + "/search?q=123")
+                .then()
+                .statusCode(HTTP_UNAUTHORIZED);
     }
 }
