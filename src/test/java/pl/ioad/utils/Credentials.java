@@ -1,4 +1,4 @@
-package pl.ioad.models;
+package pl.ioad.utils;
 
 public record Credentials(String email, String password) {
 

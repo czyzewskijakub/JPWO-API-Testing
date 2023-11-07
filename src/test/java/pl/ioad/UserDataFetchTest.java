@@ -7,8 +7,8 @@ import static java.net.HttpURLConnection.HTTP_FORBIDDEN;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static pl.ioad.models.Credentials.ADMIN;
-import static pl.ioad.models.Credentials.CUSTOMER;
+import static pl.ioad.utils.Credentials.ADMIN;
+import static pl.ioad.utils.Credentials.CUSTOMER;
 
 public class UserDataFetchTest {
 
