@@ -14,11 +14,10 @@ public class UserDataFetchTest {
 
     private static final String BASE_URL = "https://api.practicesoftwaretesting.com";
     private static final String USERS_ENDPOINT = "/users";
-    private final AuthHelper authHelper = new AuthHelper();
 
     @Test
     public void testGetExactNumberOfUsers() {
-        var accessToken = authHelper.getAccessToken(ADMIN);
+        var accessToken = AuthHelper.getAccessToken(ADMIN);
 
         given()
                 .baseUri(BASE_URL)
@@ -41,7 +40,7 @@ public class UserDataFetchTest {
 
     @Test
     public void testGetUsersForbidden() {
-        var accessToken = authHelper.getAccessToken(CUSTOMER);
+        var accessToken = AuthHelper.getAccessToken(CUSTOMER);
 
         given()
                 .baseUri(BASE_URL)
@@ -54,7 +53,7 @@ public class UserDataFetchTest {
 
     @Test
     public void testSearchForUserByNameSuccess() {
-        var accessToken = authHelper.getAccessToken(ADMIN);
+        var accessToken = AuthHelper.getAccessToken(ADMIN);
 
         given()
                 .baseUri(BASE_URL)
@@ -70,7 +69,7 @@ public class UserDataFetchTest {
 
     @Test
     public void testSearchForUserByNameNotFound() {
-        var accessToken = authHelper.getAccessToken(ADMIN);
+        var accessToken = AuthHelper.getAccessToken(ADMIN);
 
         given()
                 .baseUri(BASE_URL)

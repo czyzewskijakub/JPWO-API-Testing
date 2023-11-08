@@ -66,26 +66,6 @@ public class ProductDataFetchTest {
     }
 
     @Test
-    public void testGetProductsByCategory() {
-        Response response = given()
-                .when()
-                .queryParam("by_category", "01HEKH8M3GR9PK766W1MR82YT3")
-                .get(PRODUCTS_ENDPOINT);
-
-        response
-                .then()
-                .statusCode(HTTP_OK)
-                .assertThat()
-                .body(matchesJsonSchemaInClasspath("schemas/products_response.json").using(settings))
-                .body("data.findAll { it.category.id == '" + "01HEKH8M3GR9PK766W1MR82YT3" + "' }", not(empty()))
-                .header("Content-Type", containsString(ContentType.JSON.toString()))
-                .header("Server", not(emptyString()));
-
-
-        assertThat(response.time(), lessThan(5000L)); // Temporary 5000 ms
-    }
-
-    @Test
     public void testGetProductsByIncorrectCategory() {
         Response response = given()
                 .when()

@@ -12,7 +12,7 @@ import pl.ioad.utils.Credentials;
 
 public class AuthHelper {
 
-    public String getAccessToken(Credentials credentials) {
+    public static String getAccessToken(Credentials credentials) {
 
         HttpClient httpClient = HttpClients.createDefault();
 
