@@ -34,7 +34,7 @@ public class ContactDataFetchTest {
         response .then()
                 .statusCode(HTTP_OK)
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("schemas/message_response.json").using(settings))
+                .body(matchesJsonSchemaInClasspath("schemas/contact_response.json").using(settings))
                 .header("Content-Type", containsString(ContentType.JSON.toString()))
                 .header("Server", not(emptyString()));
 
@@ -50,7 +50,7 @@ public class ContactDataFetchTest {
         response .then()
                 .statusCode(HTTP_OK)
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("schemas/message_response.json").using(settings))
+                .body(matchesJsonSchemaInClasspath("schemas/contact_response.json").using(settings))
                 .header("Content-Type", containsString(ContentType.JSON.toString()))
                 .header("Server", not(emptyString()));
     }
