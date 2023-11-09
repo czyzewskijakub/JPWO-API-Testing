@@ -10,4 +10,9 @@ public class UniqueNameGenerator {
         String randomString = UUID.randomUUID().toString().replaceAll("-", "");
         return "NewCategory_" + timestamp + "_" + randomString;
     }
+
+    public static String generateNewString(){
+        return UUID.randomUUID().toString().replaceAll("-","");
+    }
+
 }
