@@ -117,7 +117,7 @@ public class CategoryUpdateTest {
         var accessToken = AuthHelper.getAccessToken(ADMIN);
         String categoryName = generateUniqueCategoryName();
 
-        String requestBody = "{\"name\": \"" + categoryName +"}";
+        String requestBody = "{\"name\": \"" + categoryName +"\"}";
 
         Response response = given()
                 .contentType(ContentType.JSON)
