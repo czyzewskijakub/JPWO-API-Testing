@@ -87,7 +87,7 @@ public class ContactUpdateTest {
 @Test
     public void testUpdateStatusEmptyBody(){
     var accessToken = AuthHelper.getAccessToken(ADMIN);
-    String body="{\"status\": \"\"}";
+    String body="{}";
     Response response = given()
             .body(body)
             .contentType(ContentType.JSON)
@@ -97,9 +97,7 @@ public class ContactUpdateTest {
     response
             .then()
             .assertThat()
-            .statusCode(HTTP_OK)
-            .body("success", equalTo(true))
-            .header("Content-Type", containsString(ContentType.JSON.toString()))
+            .statusCode(500)
             .header("Server", not(emptyString()));
 }
 

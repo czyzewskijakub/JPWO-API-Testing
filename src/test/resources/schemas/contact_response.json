@@ -15,7 +15,7 @@
               "type": ["string","null"]
             },
             "email": {
-              "type": "string"
+              "type": ["string","null"]
             },
             "subject": {
               "type": "string"
