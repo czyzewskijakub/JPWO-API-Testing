@@ -1,6 +1,7 @@
-package pl.ioad;
+package pl.ioad.user;
 
 import org.junit.Test;
+import pl.ioad.AuthHelper;
 
 import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_FORBIDDEN;
@@ -59,7 +60,7 @@ public class UserDataFetchTest {
                 .baseUri(BASE_URL)
                 .header("Authorization", "Bearer " + accessToken)
                 .when()
-                .get(USERS_ENDPOINT + "?q=Jane")
+                .get(USERS_ENDPOINT + "/search?q=Jane")
                 .then()
                 .statusCode(HTTP_OK)
                 .body("data[0].first_name", equalTo("Jane"))
