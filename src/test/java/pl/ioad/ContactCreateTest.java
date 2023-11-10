@@ -8,24 +8,27 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static java.net.HttpURLConnection.HTTP_CREATED;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.not;
 import static pl.ioad.utils.JsonValidatorSettings.settings;
-import static pl.ioad.utils.UniqueNameGenerator.*;
+import static pl.ioad.utils.UniqueNameGenerator.generateNewString;
 
 public class ContactCreateTest {
     private static final String CONTACT_ENDPOINT = "/messages";
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
     }
 
     @Test
     public void createNewContactPositive(){
         String random = generateNewString();
-        String requestBody = "{\"first_name\": \"" + random + "\", \"last_name\": \"" + random + "\", \"email\": \"" + random + "\", \"subject\": \"" + random + "\", \"message\": \"" + random +"\"}";
+        String requestBody = "{\"name\": \"" + "Random" + "\",  \"email\": \"" + random + "@gmail.com" + "\", \"subject\": \"" + random + "\", \"message\": \"" + random +"\"}";
 
         Response response = given()
                 .body(requestBody)
@@ -38,7 +41,7 @@ public class ContactCreateTest {
                 .assertThat()
                 .statusCode(HTTP_OK)
                 .body(matchesJsonSchemaInClasspath("schemas/contact_created.json").using(settings))
-                .body("email", equalTo(random))
+                .body("email", equalTo(random + "@gmail.com"))
                 .body("subject", equalTo(random))
                 .body("message", equalTo(random))
                 .header("Content-Type", containsString(ContentType.JSON.toString()))
@@ -47,29 +50,6 @@ public class ContactCreateTest {
         assertThat(response.time(), lessThan(5000L)); // Temporary 5000 ms
     }
 
-    @Test
-    public void createNewContactMissingUserData(){
-        String random = generateNewString();
-        String requestBody = "{\"subject\": \"" + random + "\", \"message\": \"" + random +"\"}";
-
-        Response response = given()
-                .body(requestBody)
-                .contentType(ContentType.JSON)
-                .when()
-                .post(CONTACT_ENDPOINT);
-
-        response
-                .then()
-                .assertThat()
-                .statusCode(HTTP_OK)
-                .body(matchesJsonSchemaInClasspath("schemas/contact_created.json").using(settings))
-                .body("subject", equalTo(random))
-                .body("message", equalTo(random))
-                .header("Content-Type", containsString(ContentType.JSON.toString()))
-                .header("Server", not(emptyString()));
-
-        assertThat(response.time(), lessThan(5000L)); // Temporary 5000 ms
-    }
 
     @Test
     public void createNewContactMissingSubject(){

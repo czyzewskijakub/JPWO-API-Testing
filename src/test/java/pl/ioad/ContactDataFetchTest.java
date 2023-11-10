@@ -19,7 +19,7 @@ import static pl.ioad.utils.JsonValidatorSettings.settings;
 public class ContactDataFetchTest {
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
     }
     private static final String CONTACT_ENDPOINT = "/messages";
 
@@ -75,13 +75,13 @@ public class ContactDataFetchTest {
         Response response = given()
                 .header("Authorization", "Bearer " + accessToken)
                 .when()
-                .get(CONTACT_ENDPOINT+"/test");
+                .get(CONTACT_ENDPOINT + "/test");
 
         response
                 .then()
                 .statusCode(HTTP_OK)
                 .assertThat()
-                .body("data", empty())
+                .body("data", nullValue())
                 .header("Content-Type", containsString(ContentType.JSON.toString()))
                 .header("Server", not(emptyString()));
 

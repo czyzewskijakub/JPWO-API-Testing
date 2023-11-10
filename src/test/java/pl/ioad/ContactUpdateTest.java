@@ -5,28 +5,33 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Before;
 import org.junit.Test;
+
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
 import static pl.ioad.utils.Credentials.ADMIN;
 import static pl.ioad.utils.Credentials.CUSTOMER;
-import static pl.ioad.utils.JsonValidatorSettings.settings;
 import static pl.ioad.utils.UniqueNameGenerator.generateNewString;
 
 public class ContactUpdateTest {
     private String id;
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
+        var accessToken = AuthHelper.getAccessToken(CUSTOMER);
         String random = generateNewString();
-        String requestBody = "{\"first_name\": \"" + random + "\", \"last_name\": \"" + random + "\", \"email\": \"" + random + "\", \"subject\": \"" + random + "\", \"message\": \"" + random +"\"}";
+        String requestBody = "{\"name\": \"" + "Random" + "\", \"subject\": \"" + random + "\", \"message\": \"" + random +"\"}";
         Response post = given()
                 .body(requestBody)
+                .header("Authorization", "Bearer " + accessToken)
                 .contentType(ContentType.JSON)
                 .when()
                 .post(CONTACT_ENDPOINT);
+
         id = post.jsonPath().getString("id");
     }
 
@@ -35,13 +40,13 @@ public class ContactUpdateTest {
     @Test
     public void testUpdateStatusPositive(){
         var accessToken = AuthHelper.getAccessToken(ADMIN);
-        String body="{\"status\": \"RESOLVED\"}";
+        String body="{\"status\": \"IN_PROGRESS\"}";
         Response response = given()
                 .body(body)
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + accessToken)
                 .when()
-                .put(CONTACT_ENDPOINT+"/"+id+"/status");
+                .put(CONTACT_ENDPOINT + "/" + id + "/status");
         response
                 .then()
                 .assertThat()

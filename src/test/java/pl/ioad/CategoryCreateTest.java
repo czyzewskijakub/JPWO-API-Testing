@@ -23,7 +23,7 @@ public class CategoryCreateTest {
     private static final String CATEGORIES_ENDPOINT = "/categories";
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
     }
 
     @Test

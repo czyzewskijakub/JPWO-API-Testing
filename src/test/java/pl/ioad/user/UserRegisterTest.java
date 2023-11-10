@@ -9,10 +9,11 @@ import static java.net.HttpURLConnection.HTTP_CREATED;
 import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static pl.ioad.utils.Credentials.ADMIN;
+import static pl.ioad.utils.UniqueNameGenerator.generateNewString;
 
 public class UserRegisterTest {
 
-    private static final String BASE_URL = "https://api.practicesoftwaretesting.com";
+    private static final String BASE_URL = "http://localhost:8091";
     private static final String USERS_ENDPOINT = "/users";
     private static final String REGISTER_ENDPOINT = USERS_ENDPOINT + "/register";
 
@@ -59,7 +60,15 @@ public class UserRegisterTest {
     public void testRegisterUserWithExistingEmail() {
 
         var invalidUser = USER.clone();
-        invalidUser.setEmail("john@doe.example");
+        String newEmail = generateNewString() + "@gmail.com";
+        invalidUser.setEmail(newEmail);
+
+        given()
+                .baseUri(BASE_URL)
+                .contentType(ContentType.JSON)
+                .body(invalidUser)
+                .when()
+                .post(REGISTER_ENDPOINT);
 
         given()
                 .baseUri(BASE_URL)

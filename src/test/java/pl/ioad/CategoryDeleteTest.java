@@ -26,7 +26,7 @@ public class CategoryDeleteTest {
     private final int categoriesSize = getClass().getDeclaredMethods().length - 3;
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
         IntStream.range(0, categoriesSize).forEach(i -> categoriesIds.add(createCategory()));
     }
 

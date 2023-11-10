@@ -12,7 +12,7 @@ import static pl.ioad.utils.Credentials.CUSTOMER;
 
 public class UserChangePasswordTest {
 
-    private static final String BASE_URL = "https://api.practicesoftwaretesting.com";
+    private static final String BASE_URL = "http://localhost:8091";
     private static final String USERS_ENDPOINT = "/users";
     private static final String CHANGE_PASSWORD_ENDPOINT = USERS_ENDPOINT + "/change-password";
     private static final String NEW_PASSWORD = "new-password";

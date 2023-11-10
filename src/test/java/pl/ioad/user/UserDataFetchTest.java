@@ -13,7 +13,7 @@ import static pl.ioad.utils.Credentials.CUSTOMER;
 
 public class UserDataFetchTest {
 
-    private static final String BASE_URL = "https://api.practicesoftwaretesting.com";
+    private static final String BASE_URL = "http://localhost:8091";
     private static final String USERS_ENDPOINT = "/users";
 
     @Test

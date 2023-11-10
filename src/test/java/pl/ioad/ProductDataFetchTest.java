@@ -23,7 +23,7 @@ public class ProductDataFetchTest {
     private final static String PRODUCTS_ENDPOINT = "/products";
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
     }
 
 

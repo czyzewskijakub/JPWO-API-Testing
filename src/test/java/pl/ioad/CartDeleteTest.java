@@ -9,9 +9,11 @@ import org.junit.Test;
 import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
-import static pl.ioad.utils.Credentials.ADMIN;
+import static org.hamcrest.Matchers.not;
 
 public class CartDeleteTest {
     private final static String CART_ENDPOINT = "/carts";
@@ -19,7 +21,7 @@ public class CartDeleteTest {
 
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
         Response response = given()
                 .post("/carts");
         id =  response.jsonPath().getString("id");

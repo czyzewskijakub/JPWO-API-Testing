@@ -21,7 +21,7 @@ public class CategoryUpdateTest {
     private static final String CATEGORY_ENDPOINT = "/categories";
     @Before
     public void setUp() {
-        RestAssured.baseURI = "https://api.practicesoftwaretesting.com";
+        RestAssured.baseURI = "http://localhost:8091";
         categoryId = createCategory();
     }
 

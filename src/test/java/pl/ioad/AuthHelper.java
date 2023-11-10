@@ -17,7 +17,7 @@ public class AuthHelper {
         HttpClient httpClient = HttpClients.createDefault();
 
         try {
-            HttpPost httpPost = new HttpPost("https://api.practicesoftwaretesting.com/users/login");
+            HttpPost httpPost = new HttpPost("http://localhost:8091/users/login");
 
             String requestBody = "{\"email\":\"" + credentials.email() + "\",\"password\":\"" + credentials.password() + "\"}";
 
