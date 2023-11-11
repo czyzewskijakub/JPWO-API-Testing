@@ -28,6 +28,14 @@ jobs:
           repository: czyzewskijakub/practice-software-testing
           ref: main
 
+      - name: Install Composer
+        run: |
+          docker-compose exec laravel-api curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+      - name: Install Dependencies
+        run: |
+          docker-compose exec laravel-api composer install
+
       - name: Run scripts
         run: |
           docker-compose up -d
