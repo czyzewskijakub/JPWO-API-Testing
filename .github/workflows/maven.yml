@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      SPRINT_FOLDER: your_sprint_folder   # Update with the correct value
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,12 +27,14 @@ jobs:
 
       - name: Checkout Docker repository
         run: |
-          git clone https://github.com/czyzewskijakub/practice-software-testing.git docker-repo
+          git clone https://github.com/your-docker-repo.git docker-repo
           cd docker-repo
+
+      - name: Copy Docker Compose file
+        run: cp docker-compose.yml .
 
       - name: Start Docker containers
         run: |
-          cp docker-repo/docker-compose.yml . 
           docker-compose up -d
           docker-compose exec laravel-api php artisan migrate:fresh --seed --force
           docker-compose exec laravel-api php artisan queue:work
@@ -39,5 +44,6 @@ jobs:
 
       - name: Stop Docker containers
         run: |
-          cd ../path/to/docker-repo
           docker-compose down
+          cd ..
+          rm -rf docker-repo  # Optionally remove the cloned Docker repository
