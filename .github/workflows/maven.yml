@@ -30,9 +30,10 @@ jobs:
 
       - name: Run scripts
         run: |
-          sh start-app.sh
-          sh init-data.sh
-          sh process_queue.sh
+          docker-compose build
+          docker-compose up -d
+          docker-compose exec laravel-api php artisan migrate:fresh --seed --force
+          docker-compose exec laravel-api php artisan queue:work
 
       - name: Build with Maven
         run: mvn -B test --file pom.xml
