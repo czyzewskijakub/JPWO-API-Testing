@@ -23,16 +23,16 @@ jobs:
           cache: maven
 
       - name: Checkout Docker scripts
-          uses: actions/checkout@v3
-          with:
-            repository: czyzewskijakub/practice-software-testing
-            ref: main  # lub inna gałąź, jeśli trzeba
+        uses: actions/checkout@v3
+        with:
+          repository: czyzewskijakub/practice-software-testing
+          ref: main
 
       - name: Run scripts
-          run: |
-            sh start-app.sh
-            sh init-data.sh
-            sh process_queue.sh
+        run: |
+          sh start-app.sh
+          sh init-data.sh
+          sh process_queue.sh
 
       - name: Build with Maven
         run: mvn -B test --file pom.xml
