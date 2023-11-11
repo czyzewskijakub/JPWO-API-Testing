@@ -31,13 +31,14 @@ jobs:
         run: |
           cd docker-repo
           docker-compose up -d
-          cd ..
-          wget -O /usr/local/bin/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
-          chmod +x /usr/local/bin/wait-for-it.sh
-          /usr/local/bin/wait-for-it.sh -t 30 laravel-api:8091
-          docker-compose exec laravel-api php /var/www/artisan migrate:fresh --seed --force
-          docker-compose exec laravel-api php /var/www/artisan queue:work
 
+      - name: Wait for a minute
+        run: sleep 60
+
+      - name: Start Docker containers
+        run: |
+          docker-compose exec -T laravel-api php /var/www/artisan migrate:fresh --seed --force
+          docker-compose exec -T laravel-api php /var/www/artisan queue:work
 
       - name: Build with Maven
         run: mvn -B test --file pom.xml
