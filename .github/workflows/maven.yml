@@ -30,11 +30,13 @@ jobs:
           git clone https://github.com/czyzewskijakub/practice-software-testing docker-repo
           cd docker-repo
 
-      - name: Start Docker containers
+      - name: Set up Docker containers
         run: |
           cd docker-repo
           docker-compose up -d
-          cd ..
+
+      - name: Start Docker containers
+        run: |
           docker-compose exec -T laravel-api php artisan migrate:fresh --seed --force
           docker-compose exec -T laravel-api php artisan queue:work
 
