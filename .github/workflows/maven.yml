@@ -30,17 +30,17 @@ jobs:
 
       - name: Install Composer
         run: |
-          docker-compose exec laravel-api curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          docker-compose run laravel-api curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
       - name: Install Dependencies
         run: |
-          docker-compose exec laravel-api composer install
+          docker-compose run laravel-api composer install
 
       - name: Run scripts
         run: |
           docker-compose up -d
-          docker-compose exec -T laravel-api php artisan migrate:fresh --seed --force
-          docker-compose exec -T laravel-api php artisan queue:work
+          docker-compose run -w /var/www laravel-api php artisan migrate:fresh --seed --force
+          docker-compose run -w /var/www laravel-api php artisan queue:work
 
       - name: Build with Maven
         run: mvn -B test --file pom.xml
