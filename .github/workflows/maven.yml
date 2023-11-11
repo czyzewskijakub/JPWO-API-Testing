@@ -27,9 +27,9 @@ jobs:
         with:
           repository: czyzewskijakub/practice-software-testing
           ref: main
-
-      - name: Run scripts 1
-        run: docker-compose up -d
+#
+#      - name: Run scripts 1
+#        run: docker-compose up -d
 
 #      - name: Install Composer
 #        run: docker-compose run laravel-api curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
