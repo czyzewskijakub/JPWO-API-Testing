@@ -27,7 +27,7 @@ jobs:
 
       - name: Checkout Docker repository
         run: |
-          git https://github.com/czyzewskijakub/practice-software-testing docker-repo
+          git clone https://github.com/czyzewskijakub/practice-software-testing docker-repo
           cd docker-repo
 
       - name: Copy Docker Compose file
