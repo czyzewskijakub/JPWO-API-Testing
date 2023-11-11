@@ -11,9 +11,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      SPRINT_FOLDER: your_sprint_folder   # Update with the correct value
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -37,8 +34,8 @@ jobs:
 
       - name: Start Docker containers
         run: |
-          docker-compose exec -T laravel-api php artisan migrate:fresh --seed --force
-          docker-compose exec -T laravel-api php artisan queue:work
+          docker-compose exec -T laravel-api php /var/www/artisan migrate:fresh --seed --force
+          docker-compose exec -T laravel-api php /var/www/artisan queue:work
 
       - name: Build with Maven
         run: mvn -B test --file pom.xml
@@ -47,4 +44,4 @@ jobs:
         run: |
           docker-compose down
           cd ..
-          rm -rf docker-repo  # Optionally remove the cloned Docker repository
+          rm -rf docker-repo 
