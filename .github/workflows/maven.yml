@@ -31,6 +31,7 @@ jobs:
         run: |
           cd docker-repo
           docker-compose up -d
+          cd ..
           wget -O /usr/local/bin/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
           chmod +x /usr/local/bin/wait-for-it.sh
           /usr/local/bin/wait-for-it.sh -t 30 laravel-api:8091
