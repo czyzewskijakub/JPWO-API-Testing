@@ -27,7 +27,7 @@ jobs:
 
       - name: Checkout Docker repository
         run: |
-          git clone https://github.com/your-docker-repo.git docker-repo
+          git https://github.com/czyzewskijakub/practice-software-testing docker-repo
           cd docker-repo
 
       - name: Copy Docker Compose file
@@ -40,7 +40,7 @@ jobs:
           docker-compose exec laravel-api php artisan queue:work
 
       - name: Build with Maven
-        run: mvn -B test --file ../path/to/your/code/pom.xml
+        run: mvn -B test --file pom.xml
 
       - name: Stop Docker containers
         run: |
