@@ -30,11 +30,10 @@ jobs:
           git clone https://github.com/czyzewskijakub/practice-software-testing docker-repo
           cd docker-repo
 
-      - name: Copy Docker Compose file
-        run: cp docker-compose.yml .
 
       - name: Start Docker containers
         run: |
+          cd docker-repo
           docker-compose up -d
           docker-compose exec laravel-api php artisan migrate:fresh --seed --force
           docker-compose exec laravel-api php artisan queue:work
