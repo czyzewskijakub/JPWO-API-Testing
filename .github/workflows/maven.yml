@@ -33,9 +33,9 @@ jobs:
 
 #      - name: Install Composer
 #        run: docker-compose run laravel-api curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-      - name: Install Dependencies
-        run: docker-compose run laravel-api composer install
+#
+#      - name: Install Dependencies
+#        run: docker-compose run laravel-api composer install
 
       - name: Run scripts 2
         run: docker-compose run -w /var/www laravel-api php artisan migrate:fresh --seed --force
