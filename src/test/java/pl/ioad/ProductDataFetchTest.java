@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.JsonValidatorSettings.settings;
 import static java.net.HttpURLConnection.HTTP_OK;
 
@@ -23,7 +24,7 @@ public class ProductDataFetchTest {
     private final static String PRODUCTS_ENDPOINT = "/products";
     @Before
     public void setUp() {
-        RestAssured.baseURI = "http://localhost:8091";
+        RestAssured.baseURI = BASE_URI;
     }
 
 

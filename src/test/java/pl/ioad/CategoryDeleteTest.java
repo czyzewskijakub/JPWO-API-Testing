@@ -15,6 +15,7 @@ import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.CategoryCreator.createCategory;
 import static pl.ioad.utils.Credentials.ADMIN;
 
@@ -26,7 +27,7 @@ public class CategoryDeleteTest {
     private final int categoriesSize = getClass().getDeclaredMethods().length - 3;
     @Before
     public void setUp() {
-        RestAssured.baseURI = "http://localhost:8091";
+        RestAssured.baseURI = BASE_URI;
         IntStream.range(0, categoriesSize).forEach(i -> categoriesIds.add(createCategory()));
     }
 

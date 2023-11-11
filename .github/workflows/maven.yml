@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CI with Maven and Docker
 
 on:
   push:
@@ -7,18 +7,32 @@ on:
     branches: [ "master" ]
 
 jobs:
-  test:
+  test-and-deploy:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
+      - name: Checkout Java code
+        uses: actions/checkout@v3
 
-    - name: Build with Maven
-      run: mvn -B test --file pom.xml
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Checkout Docker scripts
+          uses: actions/checkout@v3
+          with:
+            repository: czyzewskijakub/practice-software-testing
+            ref: main  # lub inna gałąź, jeśli trzeba
+
+      - name: Run scripts
+          run: |
+            sh start-app.sh
+            sh init-data.sh
+            sh process_queue.sh
+
+      - name: Build with Maven
+        run: mvn -B test --file pom.xml

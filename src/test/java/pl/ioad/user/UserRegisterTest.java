@@ -8,12 +8,13 @@ import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_CREATED;
 import static java.net.HttpURLConnection.HTTP_NO_CONTENT;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.Credentials.ADMIN;
 import static pl.ioad.utils.UniqueNameGenerator.generateNewString;
 
 public class UserRegisterTest {
 
-    private static final String BASE_URL = "http://localhost:8091";
+    private static final String BASE_URL = BASE_URI;
     private static final String USERS_ENDPOINT = "/users";
     private static final String REGISTER_ENDPOINT = USERS_ENDPOINT + "/register";
 

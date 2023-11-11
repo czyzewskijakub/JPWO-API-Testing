@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.JsonValidatorSettings.settings;
 import static pl.ioad.utils.UniqueNameGenerator.generateUniqueCategoryName;
 
@@ -23,7 +24,7 @@ public class CategoryCreateTest {
     private static final String CATEGORIES_ENDPOINT = "/categories";
     @Before
     public void setUp() {
-        RestAssured.baseURI = "http://localhost:8091";
+        RestAssured.baseURI = BASE_URI;
     }
 
     @Test

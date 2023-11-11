@@ -13,6 +13,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.Credentials.ADMIN;
 import static pl.ioad.utils.Credentials.CUSTOMER;
 import static pl.ioad.utils.UniqueNameGenerator.generateNewString;
@@ -21,7 +22,7 @@ public class ContactUpdateTest {
     private String id;
     @Before
     public void setUp() {
-        RestAssured.baseURI = "http://localhost:8091";
+        RestAssured.baseURI = BASE_URI;
         var accessToken = AuthHelper.getAccessToken(CUSTOMER);
         String random = generateNewString();
         String requestBody = "{\"name\": \"" + "Random" + "\", \"subject\": \"" + random + "\", \"message\": \"" + random +"\"}";

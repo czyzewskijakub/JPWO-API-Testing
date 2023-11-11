@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 
 public class CartDeleteTest {
     private final static String CART_ENDPOINT = "/carts";
@@ -21,7 +22,7 @@ public class CartDeleteTest {
 
     @Before
     public void setUp() {
-        RestAssured.baseURI = "http://localhost:8091";
+        RestAssured.baseURI = BASE_URI;
         Response response = given()
                 .post("/carts");
         id =  response.jsonPath().getString("id");

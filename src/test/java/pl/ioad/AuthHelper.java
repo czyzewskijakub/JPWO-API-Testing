@@ -10,6 +10,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import pl.ioad.utils.Credentials;
 
+import static pl.ioad.utils.BaseURI.BASE_URI;
+
 public class AuthHelper {
 
     public static String getAccessToken(Credentials credentials) {
@@ -17,7 +19,7 @@ public class AuthHelper {
         HttpClient httpClient = HttpClients.createDefault();
 
         try {
-            HttpPost httpPost = new HttpPost("http://localhost:8091/users/login");
+            HttpPost httpPost = new HttpPost(BASE_URI + "/users/login");
 
             String requestBody = "{\"email\":\"" + credentials.email() + "\",\"password\":\"" + credentials.password() + "\"}";
 

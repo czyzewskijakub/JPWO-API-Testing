@@ -11,6 +11,7 @@ import static java.net.HttpURLConnection.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.lessThan;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.CategoryCreator.createCategory;
 import static pl.ioad.utils.Credentials.ADMIN;
 import static pl.ioad.utils.UniqueNameGenerator.generateUniqueCategoryName;
@@ -21,7 +22,7 @@ public class CategoryUpdateTest {
     private static final String CATEGORY_ENDPOINT = "/categories";
     @Before
     public void setUp() {
-        RestAssured.baseURI = "http://localhost:8091";
+        RestAssured.baseURI = BASE_URI;
         categoryId = createCategory();
     }
 

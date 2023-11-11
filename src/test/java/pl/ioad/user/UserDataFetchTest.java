@@ -8,12 +8,13 @@ import static java.net.HttpURLConnection.HTTP_FORBIDDEN;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.Credentials.ADMIN;
 import static pl.ioad.utils.Credentials.CUSTOMER;
 
 public class UserDataFetchTest {
 
-    private static final String BASE_URL = "http://localhost:8091";
+    private static final String BASE_URL = BASE_URI;
     private static final String USERS_ENDPOINT = "/users";
 
     @Test

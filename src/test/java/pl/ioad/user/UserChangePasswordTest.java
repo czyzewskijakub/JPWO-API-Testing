@@ -8,11 +8,12 @@ import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.Credentials.CUSTOMER;
 
 public class UserChangePasswordTest {
 
-    private static final String BASE_URL = "http://localhost:8091";
+    private static final String BASE_URL = BASE_URI;
     private static final String USERS_ENDPOINT = "/users";
     private static final String CHANGE_PASSWORD_ENDPOINT = USERS_ENDPOINT + "/change-password";
     private static final String NEW_PASSWORD = "new-password";

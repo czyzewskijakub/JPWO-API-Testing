@@ -12,6 +12,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static pl.ioad.utils.BaseURI.BASE_URI;
 import static pl.ioad.utils.Credentials.ADMIN;
 import static pl.ioad.utils.Credentials.CUSTOMER;
 import static pl.ioad.utils.JsonValidatorSettings.settings;
@@ -19,7 +20,7 @@ import static pl.ioad.utils.JsonValidatorSettings.settings;
 public class ContactDataFetchTest {
     @Before
     public void setUp() {
-        RestAssured.baseURI = "http://localhost:8091";
+        RestAssured.baseURI = BASE_URI;
     }
     private static final String CONTACT_ENDPOINT = "/messages";
 
