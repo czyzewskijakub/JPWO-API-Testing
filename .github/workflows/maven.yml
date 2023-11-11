@@ -29,7 +29,7 @@ jobs:
 
       - name: Start Docker containers
         run: |
-          cp docker-compose.yml . 
+          cp ../docker-compose.yml . 
           docker-compose up -d
           docker-compose exec laravel-api php artisan migrate:fresh --seed --force
           docker-compose exec laravel-api php artisan queue:work
